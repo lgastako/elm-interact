@@ -11,15 +11,17 @@ To quote from the Haskell docs:
 
 The elm part is easy, e.g. to create a program that converts it's input to upper case:
 
-    module Upper exposing (main)
+```elm
+module Upper exposing (main)
 
-    import Interact exposing (Flags)
-    import String
+import Interact exposing (Flags)
+import String
 
 
-    main : Program Flags
-    main =
-        interact String.toUpper
+main : Program Flags
+main =
+    interact String.toUpper
+```
 
 If you want to use command line arguments you can use `interactArgs`.
 
