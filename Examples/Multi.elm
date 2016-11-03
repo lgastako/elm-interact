@@ -1,12 +1,7 @@
-module Example exposing (main)
+module Examples.Multi exposing (main)
 
 import Interact exposing (Flags)
 import String
-
-
--- main : Program Flags
--- main =
---     interact String.toUpper
 
 
 main : Program Flags

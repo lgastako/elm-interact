@@ -1,9 +1,10 @@
 (function() {
-    const fs = require("fs");
-    const Elm = require("./elm.js");
-    const log = console.log;
+    const fs   = require("fs");
+    const Elm  = require("./elm.js");
+    const log  = console.log;
+    const show = JSON.stringify;
     const encoding = "utf-8";
-    const elm = Elm.Example.worker(process.argv);
+    const elm = Elm.Examples.Multi.worker(process.argv);
     elm.ports.stdout.subscribe(function(s) {
         process.stdout.write(s);
     });
