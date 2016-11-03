@@ -10,6 +10,10 @@ clean:
 	$(NUKE) $(OUT)
 
 elm.js:
-	elm make Interact.elm --warn --output=elm.js
+	elm make Example.elm Interact.elm --warn --output=elm.js
+
+run:
+	node index.js < Makefile
 
 b: build
+r: run
