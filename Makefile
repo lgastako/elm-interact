@@ -4,6 +4,7 @@ SRC=src
 NUKE=rm -rf
 
 EXAMPLE_FILE=README.md
+TEMPLATE=template.js
 
 SRCS=$(shell find $(SRC) -name \*.elm)
 
@@ -31,7 +32,15 @@ demo-upper:
 	node $(BIN)/toUpper.js < $(EXAMPLE_FILE)
 
 demo-make-index:
-	node $(BIN)/makeIndex.js "Examples.Multi" < template.js > made-index.js
+	node $(BIN)/makeIndex.js "Examples.Multi" < $(TEMPLATE) > made-index.js
+
+make-indexes:
+	node bin/makeIndex.js "Examples.Fail" < $(TEMPLATE) > bin/fail.js
+	node bin/makeIndex.js "Examples.MakeIndex" < $(TEMPLATE) > bin/makeIndex.js
+	node bin/makeIndex.js "Examples.Multi" < $(TEMPLATE) > bin/multi.js
+	node bin/makeIndex.js "Examples.Reverse" < $(TEMPLATE) > bin/reverse.js
+	node bin/makeIndex.js "Examples.ToLower" < $(TEMPLATE) > bin/toLower.js
+	node bin/makeIndex.js "Examples.ToUpper" < $(TEMPLATE) > bin/toUppwer.js
 
 b: build
 
