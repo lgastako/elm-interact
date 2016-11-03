@@ -1,11 +1,20 @@
-port module Interact exposing (Args, interact, interactWithArgs)
+port module Interact
+    exposing
+        ( Args
+        , interact
+        , interactR
+        , interactWithArgs
+        , interactWithArgsR
+        )
 
 {-| The Interact library provides the Haskell-alike interact (and
 interactWithArgs) functions.
 
 @docs Args
 @docs interact
+@docs interactR
 @docs interactWithArgs
+@docs interactWithArgsR
 
 -}
 
@@ -60,6 +69,30 @@ interact f =
     Worker.programWithFlags doNotLogModel
         { init = init
         , update = update f
+        , subscriptions = subs
+        }
+
+
+{-| The interact function takes a function of type `String -> String` as its
+argument. The entire input from the standard input device is passed to this
+function as its argument, and the resulting string is output on the standard
+output device.
+
+    module Upper exposing (main)
+
+    import Interact exposing (Args)
+    import String
+
+
+    main : Program Args
+    main =
+        Interact.interact String.toUpper
+-}
+interactR : (String -> Result String String) -> Program Args
+interactR f =
+    Worker.programWithFlags doNotLogModel
+        { init = init
+        , update = updateR f
         , subscriptions = subs
         }
 

@@ -1,6 +1,7 @@
 (function() {
-    const fs   = require("fs");
+    const fs = require("fs");
     const encoding = "utf-8";
+    const Elm = require("./elm.js");
     const elm = Elm.__MAIN_NAMESPACE__.worker(process.argv);
     elm.ports.stdout.subscribe(function(s) {
         process.stdout.write(s);

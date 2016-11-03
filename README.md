@@ -42,6 +42,8 @@ It can be used like so:
     FIB ZAB
     RAB OOF
 
+TODO: document `interactR` and `interactWithArgsR`.
+
 ## Known Issues / Limitations
 
 - Assumes utf-8 encoding
