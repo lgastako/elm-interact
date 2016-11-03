@@ -1,5 +1,9 @@
-OUT=elm.js
+BIN=bin
+OUT=$(BIN)/elm.js
+SRC=src
 NUKE=rm -rf
+
+SRCS=$(shell find $(SRC) -name \*.elm)
 
 help:
 	@cat Makefile
@@ -9,11 +13,25 @@ build: $(OUT)
 clean:
 	$(NUKE) $(OUT)
 
-elm.js:
-	elm make Examples/*.elm Interact.elm --warn --output=elm.js
+$(OUT):
+	elm make $(SRCS) --warn --output=$(OUT)
+
+demo-lower:
+	node $(BIN)/toLower.js < Makefile
 
 demo-multi:
-	node multi.js reverse toUpper < Makefile
+	node $(BIN)/multi.js reverse toUpper < Makefile
+
+demo-reverse:
+	node $(BIN)/reverse.js < Makefile
+
+demo-upper:
+	node $(BIN)/toUpper.js < Makefile
 
 b: build
 r: run
+
+dl: demo-lower
+dm: demo-multi
+dr: demo-reverse
+du: demo-upper
