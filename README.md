@@ -4,10 +4,10 @@ Like [Haskell's `interact` function](https://hackage.haskell.org/package/base-4.
 
 To quote from the Haskell docs:
 
-    The interact function takes a function of type String->String as its
-    argument. The entire input from the standard input device is passed to this
-    function as its argument, and the resulting string is output on the
-    standard output device.
+> The interact function takes a function of type String->String as its
+> argument. The entire input from the standard input device is passed to this
+> function as its argument, and the resulting string is output on the standard
+> output device.
 
 The elm part is easy, e.g. to create a program that converts it's input to upper case:
 
