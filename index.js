@@ -3,7 +3,6 @@
     const Elm = require("./elm.js");
     const log = console.log;
     const encoding = "utf-8";
-
     const elm = Elm.Example.worker(process.argv);
     elm.ports.stdout.subscribe(function(s) {
         process.stdout.write(s);
