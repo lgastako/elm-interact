@@ -42,6 +42,11 @@ It can be used like so:
     FIB ZAB
     RAB OOF
 
+## Known Issues / Limitations
+
+- Assumes utf-8 encoding
+- Reads entire file at once
+
 ## License
 
 `elm-interact` is made availabl under the BSD3 open source license.
