@@ -28,10 +28,14 @@ demo-reverse:
 demo-upper:
 	node $(BIN)/toUpper.js < Makefile
 
+demo-make-index:
+	node $(BIN)/makeIndex.js "Foo.Bar" < template.js
+
 b: build
 r: run
 
 dl: demo-lower
 dm: demo-multi
+dmi: demo-make-index
 dr: demo-reverse
 du: demo-upper
