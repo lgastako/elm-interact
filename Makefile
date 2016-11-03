@@ -19,6 +19,9 @@ clean:
 $(OUT):
 	elm make $(SRCS) --warn --output=$(OUT)
 
+demo-fail:
+	node $(BIN/fail.sj < $(EXAMPLE_FILE)
+
 demo-lower:
 	node $(BIN)/toLower.js < $(EXAMPLE_FILE)
 
@@ -45,8 +48,10 @@ make-indexes:
 
 b: build
 
+df: demo-fail
 dl: demo-lower
 dm: demo-multi
 dmi: demo-make-index
 dr: demo-reverse
 du: demo-upper
+mi: make-indexes
