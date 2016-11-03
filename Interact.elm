@@ -1,5 +1,14 @@
 port module Interact exposing (Flags, interact, interactFlags)
 
+{-| The Interact library provides the Haskell-alike interact (and
+interactFlags) functions.
+
+@docs Flags
+@docs interact
+@docs interactFlags
+
+-}
+
 import Worker
 
 
@@ -7,6 +16,8 @@ type Msg
     = Stdin String
 
 
+{-| Flags is just an alias for a List String representing command line args.
+-}
 type alias Flags =
     List String
 
@@ -26,6 +37,21 @@ port stdout : String -> Cmd msg
 port stdin : (String -> msg) -> Sub msg
 
 
+{-| The interact function takes a function of type String -> String as its
+argument. The entire input from the standard input device is passed to this
+function as its argument, and the resulting string is output on the standard
+output device.
+
+    module Upper exposing (main)
+
+    import Interact exposing (Flags)
+    import String
+
+
+    main : Program Flags
+    main =
+        interact String.toUpper
+-}
 interact : (String -> String) -> Program Flags
 interact f =
     Worker.programWithFlags doNotLogModel
@@ -35,6 +61,19 @@ interact f =
         }
 
 
+{-| The interactFlags function is like interact but the function you pass to
+it must take an additional `flags` argument as a first argument.
+
+    module Upper exposing (main)
+
+    import Interact exposing (Flags)
+    import String
+
+
+    main : Program Flags
+    main =
+        interactFlags \flags s -> (String.join "\n" flags) ++ "\n" ++ s
+-}
 interactFlags : (Flags -> String -> String) -> Program Flags
 interactFlags f =
     Worker.programWithFlags doNotLogModel
