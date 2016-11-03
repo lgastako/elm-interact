@@ -1,10 +1,10 @@
 module Examples.Multi exposing (main)
 
-import Interact exposing (Flags)
+import Interact exposing (Args)
 import String
 
 
-main : Program Flags
+main : Program Args
 main =
     let
         f flags =
@@ -20,7 +20,7 @@ main =
                 else
                     List.foldl (<<) identity fns
     in
-        Interact.interactWithFlags f
+        Interact.interactWithArgs f
 
 
 fnFromString : String -> Maybe (String -> String)

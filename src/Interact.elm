@@ -1,11 +1,11 @@
-port module Interact exposing (Flags, interact, interactWithFlags)
+port module Interact exposing (Args, interact, interactWithArgs)
 
 {-| The Interact library provides the Haskell-alike interact (and
-interactWithFlags) functions.
+interactWithArgs) functions.
 
-@docs Flags
+@docs Args
 @docs interact
-@docs interactWithFlags
+@docs interactWithArgs
 
 -}
 
@@ -16,14 +16,14 @@ type Msg
     = Stdin String
 
 
-{-| Flags is just an alias for a List String representing command line args.
+{-| Args is just an alias for a List String representing command line args.
 -}
-type alias Flags =
+type alias Args =
     List String
 
 
 type alias Model =
-    { flags : Flags
+    { flags : Args
     , contents : String
     }
 
@@ -44,15 +44,15 @@ output device.
 
     module Upper exposing (main)
 
-    import Interact exposing (Flags)
+    import Interact exposing (Args)
     import String
 
 
-    main : Program Flags
+    main : Program Args
     main =
         interact String.toUpper
 -}
-interact : (String -> String) -> Program Flags
+interact : (String -> String) -> Program Args
 interact f =
     Worker.programWithFlags doNotLogModel
         { init = init
@@ -61,21 +61,21 @@ interact f =
         }
 
 
-{-| The interactWithFlags function is like interact but the function you pass to
+{-| The interactWithArgs function is like interact but the function you pass to
 it must take an additional `flags` argument as a first argument.
 
     module Upper exposing (main)
 
-    import Interact exposing (Flags)
+    import Interact exposing (Args)
     import String
 
 
-    main : Program Flags
+    main : Program Args
     main =
-        interactWithFlags \flags s -> (String.join "\n" flags) ++ "\n" ++ s
+        interactWithArgs \flags s -> (String.join "\n" flags) ++ "\n" ++ s
 -}
-interactWithFlags : (Flags -> String -> String) -> Program Flags
-interactWithFlags f =
+interactWithArgs : (Args -> String -> String) -> Program Args
+interactWithArgs f =
     Worker.programWithFlags doNotLogModel
         { init = init
         , update = updateWithArgs f
@@ -83,7 +83,7 @@ interactWithFlags f =
         }
 
 
-init : Flags -> ( Model, Cmd msg )
+init : Args -> ( Model, Cmd msg )
 init flags =
     { emptyModel | flags = flags } ! [ begin () ]
 
@@ -95,7 +95,7 @@ update f msg model =
             model ! [ stdout (f input) ]
 
 
-updateWithArgs : (Flags -> String -> String) -> Msg -> Model -> ( Model, Cmd msg )
+updateWithArgs : (Args -> String -> String) -> Msg -> Model -> ( Model, Cmd msg )
 updateWithArgs f msg model =
     update (f (List.drop 1 model.flags)) msg model
 
@@ -112,11 +112,11 @@ subs model =
 
 emptyModel : Model
 emptyModel =
-    { flags = emptyFlags
+    { flags = emptyArgs
     , contents = ""
     }
 
 
-emptyFlags : List String
-emptyFlags =
+emptyArgs : List String
+emptyArgs =
     []

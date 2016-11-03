@@ -14,11 +14,11 @@ The elm part is easy, e.g. to create a program that converts it's input to upper
 ```elm
 module Upper exposing (main)
 
-import Interact exposing (Flags)
+import Interact exposing (Args)
 import String
 
 
-main : Program Flags
+main : Program Args
 main =
     interact String.toUpper
 ```
