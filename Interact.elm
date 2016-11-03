@@ -58,7 +58,7 @@ update f msg model =
 
 updateWithArgs : (Flags -> String -> String) -> Msg -> Model -> ( Model, Cmd msg )
 updateWithArgs f msg model =
-    update (f model.flags) msg model
+    update (f (List.drop 1 model.flags)) msg model
 
 
 doNotLogModel : Model -> Cmd Msg
