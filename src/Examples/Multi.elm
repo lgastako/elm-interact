@@ -20,7 +20,7 @@ main =
                 else
                     List.foldl (<<) identity fns
     in
-        Interact.interactFlags f
+        Interact.interactWithFlags f
 
 
 fnFromString : String -> Maybe (String -> String)

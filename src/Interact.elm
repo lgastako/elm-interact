@@ -1,11 +1,11 @@
-port module Interact exposing (Flags, interact, interactFlags)
+port module Interact exposing (Flags, interact, interactWithFlags)
 
 {-| The Interact library provides the Haskell-alike interact (and
-interactFlags) functions.
+interactWithFlags) functions.
 
 @docs Flags
 @docs interact
-@docs interactFlags
+@docs interactWithFlags
 
 -}
 
@@ -61,7 +61,7 @@ interact f =
         }
 
 
-{-| The interactFlags function is like interact but the function you pass to
+{-| The interactWithFlags function is like interact but the function you pass to
 it must take an additional `flags` argument as a first argument.
 
     module Upper exposing (main)
@@ -72,10 +72,10 @@ it must take an additional `flags` argument as a first argument.
 
     main : Program Flags
     main =
-        interactFlags \flags s -> (String.join "\n" flags) ++ "\n" ++ s
+        interactWithFlags \flags s -> (String.join "\n" flags) ++ "\n" ++ s
 -}
-interactFlags : (Flags -> String -> String) -> Program Flags
-interactFlags f =
+interactWithFlags : (Flags -> String -> String) -> Program Flags
+interactWithFlags f =
     Worker.programWithFlags doNotLogModel
         { init = init
         , update = updateWithArgs f
