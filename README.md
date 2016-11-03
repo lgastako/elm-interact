@@ -44,4 +44,6 @@ It can be used like so:
 
 ## License
 
+`elm-interact` is made availabl under the BSD3 open source license.
+
 Copyright (c) 2016 John Evans.
