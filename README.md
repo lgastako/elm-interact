@@ -30,6 +30,18 @@ If you want to use command line arguments you can use `interactArgs`.
 You should use the `index.js` included in the projection or something like it
 to bootstrap your program from javascript.
 
+You can see a more complicated example in `Example.elm` which is a program that
+allows you to compose a pipeline of the Elm `String` functions.
+
+It can be used like so:
+
+    % node index.js reverse toUpper
+    foo bar
+    baz bif
+    ^D
+    FIB ZAB
+    RAB OOF
+
 ## License
 
 Copyright (c) 2016 John Evans.
