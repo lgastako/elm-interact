@@ -35,12 +35,13 @@ demo-make-index:
 	node $(BIN)/makeIndex.js "Examples.Multi" < $(TEMPLATE) > made-index.js
 
 make-indexes:
-	node bin/makeIndex.js "Examples.Fail" < $(TEMPLATE) > bin/fail.js
-	node bin/makeIndex.js "Examples.MakeIndex" < $(TEMPLATE) > bin/makeIndex.js
-	node bin/makeIndex.js "Examples.Multi" < $(TEMPLATE) > bin/multi.js
-	node bin/makeIndex.js "Examples.Reverse" < $(TEMPLATE) > bin/reverse.js
-	node bin/makeIndex.js "Examples.ToLower" < $(TEMPLATE) > bin/toLower.js
-	node bin/makeIndex.js "Examples.ToUpper" < $(TEMPLATE) > bin/toUppwer.js
+	node $(BIN)/makeIndex.js "Examples.MakeIndex" < $(TEMPLATE) > $(BIN)/makeIndex.js.tmp
+	mv $(BIN)/makeIndex.js.tmp $(BIN)/makeIndex.js
+	node $(BIN)/makeIndex.js "Examples.Fail" < $(TEMPLATE) > $(BIN)/fail.js
+	node $(BIN)/makeIndex.js "Examples.Multi" < $(TEMPLATE) > $(BIN)/multi.js
+	node $(BIN)/makeIndex.js "Examples.Reverse" < $(TEMPLATE) > $(BIN)/reverse.js
+	node $(BIN)/makeIndex.js "Examples.ToLower" < $(TEMPLATE) > $(BIN)/toLower.js
+	node $(BIN)/makeIndex.js "Examples.ToUpper" < $(TEMPLATE) > $(BIN)/toUpper.js
 
 b: build
 
