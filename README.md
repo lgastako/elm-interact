@@ -27,10 +27,14 @@ If you want to use command line arguments you can use `interactArgs`.
 
     TODO: Example of interactArgs
 
-You should use the `index.js` included in the projection or something like it
+You should use the `template.js` included in the project or something like it
 to bootstrap your program from javascript.
 
-You can see a more complicated example in `Example.elm` which is a program that
+The MakeIndex example is actually an Interact program that builds an index.js
+for you.  I plain to update it to make an executable she-bang script out of your
+program soon.
+
+You can see a more complicated example in `Examples/Multi.elm` which is a program that
 allows you to compose a pipeline of the Elm `String` functions.
 
 It can be used like so:
@@ -47,10 +51,10 @@ TODO: document `interactR` and `interactWithArgsR`.
 ## Known Issues / Limitations
 
 - Assumes utf-8 encoding
-- Reads entire file at once
+- Reads entire file into memory at once
 
 ## License
 
-`elm-interact` is made availabl under the BSD3 open source license.
+`elm-interact` is made available under the BSD3 open source license.
 
 Copyright (c) 2016 John Evans.
