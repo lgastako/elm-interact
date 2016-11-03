@@ -1,16 +1,14 @@
 (function() {
-    const fs   = require("fs");
-    const Elm  = require("../bin/elm.js");
-    const log  = console.log;
-    const show = JSON.stringify;
+    const fs = require("fs");
     const encoding = "utf-8";
+    const Elm = require("./elm.js");
     const elm = Elm.Examples.MakeIndex.worker(process.argv);
     elm.ports.stdout.subscribe(function(s) {
         process.stdout.write(s);
         process.exit(0);
     });
     elm.ports.stderr.subscribe(function(s) {
-        process.stdout.write(s);
+        process.stderr.write(s);
         process.exit(1);
     });
     elm.ports.begin.subscribe(function() {
