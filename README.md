@@ -20,7 +20,7 @@ import String
 
 main : Program Args
 main =
-    interact String.toUpper
+    Interact.interact String.toUpper
 ```
 
 If you want to use command line arguments you can use `interactArgs`.
