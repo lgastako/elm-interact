@@ -7,8 +7,9 @@ port module Interact
         , interactWithArgsR
         )
 
-{-| The Interact library provides the Haskell-alike interact (and
-interactWithArgs) functions.
+{-| The Interact library provides the Haskell-alike `interact` function along
+with bonus `interactR`, `interactWithArgs`, and `interactWithArgsR` functions.
+
 
 @docs Args
 @docs interact
@@ -25,7 +26,7 @@ type Msg
     = Stdin String
 
 
-{-| Args is just an alias for a List String representing command line args.
+{-| Args is just an alias for a `List String` representing command line arguments.
 -}
 type alias Args =
     List String
@@ -49,10 +50,10 @@ port stderr : String -> Cmd msg
 port stdin : (String -> msg) -> Sub msg
 
 
-{-| The interact function takes a function of type `String -> String` as its
-argument. The entire input from the standard input device is passed to this
-function as its argument, and the resulting string is output on the standard
-output device.
+{-| The interact function takes a function `f` of type `String ->
+String` as its argument. The contents of `stdin` are deserialized and
+passed to `f` as its sole argument.  The return value of the call to `f` is
+serialized to `stdout`.
 
     module Upper exposing (main)
 
@@ -73,10 +74,10 @@ interact f =
         }
 
 
-{-| The interact function takes a function of type `String -> String` as its
-argument. The entire input from the standard input device is passed to this
-function as its argument, and the resulting string is output on the standard
-output device.
+{-| The interactR function takes a function `f` of type `(String ->
+Result String String)` as its argument. The contents of `stdin` are
+deserialized and passed to `f` as its sole argument.  The return value of the
+call to `f` is serialized to `stdout`.
 
     module Upper exposing (main)
 
