@@ -11,14 +11,12 @@
         process.stderr.write(s);
         process.exit(1);
     });
-    elm.ports.begin.subscribe(function() {
-        let buffer = Buffer.alloc(0);
-        process.stdin.on("data", function(chunk) {
-            const totalLength = buffer.length + chunk.length;
-            buffer = Buffer.concat([buffer, chunk], totalLength);
-        });
-        process.stdin.on("end", function() {
-            elm.ports.stdin.send(buffer.toString(encoding));
-        });
+    let buffer = Buffer.alloc(0);
+    process.stdin.on("data", function(chunk) {
+        const totalLength = buffer.length + chunk.length;
+        buffer = Buffer.concat([buffer, chunk], totalLength);
+    });
+    process.stdin.on("end", function() {
+        elm.ports.stdin.send(buffer.toString(encoding));
     });
 })();

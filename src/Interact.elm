@@ -38,9 +38,6 @@ type alias Model =
     }
 
 
-port begin : () -> Cmd msg
-
-
 port stdout : String -> Cmd msg
 
 
@@ -144,7 +141,7 @@ interactWithArgsR f =
 
 init : Args -> ( Model, Cmd msg )
 init flags =
-    { emptyModel | flags = flags } ! [ begin () ]
+    { emptyModel | flags = flags } ! []
 
 
 update : (String -> String) -> Msg -> Model -> ( Model, Cmd msg )
